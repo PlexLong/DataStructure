@@ -29,12 +29,19 @@ int main(){
 
     LinkList L;
     /*InitList(L);*/
-    ListInsert(L,1,5);
-    ListInsert(L,2,105);
+    ListInsert(L,1,1);
+    ListInsert(L,2,3);
+    LNode *q =L->next->next;
+//    LNode *w =L->next;
+    InsertNextNode(q,4);
+    InsertPriorNode(q,2);
+//    free(w);
 
-    LNode *q =L->next;
+//打印链表
+    q=L->next;
     while (q != NULL){
         printf("%d \n",q->data);
         q=q->next;
     }
+    free(q);
 }
