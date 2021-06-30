@@ -2,40 +2,90 @@
 #include "cstdio"
 
 typedef struct DNode {
-    int data;//æ•°æ®åŸŸ
-    struct DNode *prior, *next;//å‰åŽ»ã€åŽç»§æŒ‡é’ˆ
+    int data;//Êý¾ÝÓò
+    struct DNode *prior, *next;//Ç°È¥¡¢ºó¼ÌÖ¸Õë
 } DNode, *DLinkList;
 
-//åˆå§‹åŒ–
+//´òÓ¡Ë«ÏòÁ´±í
 /**
  *
- * @param L åŒé“¾è¡¨
- * @return trueæˆåŠŸ falseå¤±è´¥
+ * @param DL Ë«ÏòÁ´±í
+ */
+void PrintDLinkList(DLinkList DL){
+    DNode *q=DL->next;
+    printf("==[ DL ]===\n");
+    int i=1;
+    while (q != NULL){
+        printf("µÚ%d¸ö½áµã: %d   \n",i,q->data);
+        q=q->next;
+        i++;
+    }
+    printf("===========\n");
+    free(q);
+}
+
+//³õÊ¼»¯
+/**
+ *
+ * @param L Ë«Á´±í
+ * @return true³É¹¦ falseÊ§°Ü
  */
 bool InitDLinkList(DLinkList &L) {
     L = (DNode *) malloc(sizeof(DNode));
     if (L == NULL) return false;
-    L->prior = NULL;//å¤´èŠ‚ç‚¹çš„å‰é©±æ°¸è¿œæŒ‡å‘NULL
+    L->prior = NULL;//Í·½ÚµãµÄÇ°ÇýÓÀÔ¶Ö¸ÏòNULL
     L->next = NULL;
     return true;
 }
 
-//æŒ‡å®šç»“ç‚¹åŽæ’å…¥
+//Ö¸¶¨½áµãºó²åÈë
 /**
  *
- * @param p æŒ‡å®šç»“ç‚¹
- * @param s å¾…æ’å…¥ç»“ç‚¹
+ * @param p Ö¸¶¨½áµã
+ * @param s ´ý²åÈë½áµã
  * @return
  */
 bool InsertNextDNode(DNode *p, DNode *s) {
     if (p == NULL || s == NULL) return false;
     s->next = p->next;
-    if (p->next != NULL) //pä¹‹åŽæ˜¯å¦è¿˜æœ‰ç»“ç‚¹
+    if (p->next != NULL) //pÖ®ºóÊÇ·ñ»¹ÓÐ½áµã
         p->next->prior = s;
     s->prior = p;
     p->next = s;
     return true;
 }
 
+//É¾³ýpµÄºó¼Ì½áµã
+/**
+ *
+ * @param p É¾³ýµÄ½áµãµÄÇ°Çý½áµã
+ * @return
+ */
+bool DeleteNextDNode(DNode *p){
+    if(p== nullptr) return false;
+    DNode *q =p->next;//pµÄºóÐø½áµã
+    if(q == nullptr) return false;
+    p->next=q->next;
+    if(q->next!= nullptr)
+        q->next->prior=p;
+    free(q);
+    return true;
+}
+
+//Ë«ÏòÁ´±í±éÀú
+/* ºóÏò±éÀú */
+bool NextRead(DLinkList DL){
+    DNode *q = DL->next;
+    if(q == nullptr)
+        printf("¿Õ±í\n");
+    int i=1;
+    while (q != nullptr){
+        printf("µÚ%d¸ö½áµã£º%d\n",i,q->data);
+        q=q->next;
+        i++;
+    }
+    free(q);
+    return true;
+}
 
 

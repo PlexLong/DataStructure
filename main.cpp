@@ -70,22 +70,28 @@ int main(){
     PrintLinkList(L2);*/
 
     DLinkList DL;
+    /*
+     * 创建结点方法
+     * 1.结构体变量的地址赋给指针
+     * 2.直接malloc（注意释放指针空间）*/
     DNode dNode;
     DNode *s=&dNode;
     DNode *t=(DNode *) malloc(sizeof(DNode));
-    printf("%d \n",s);
-    printf("%d \n",t);
+    printf("%d \n",s);//打印s地址
+    printf("%d \n",t);//打印t地址
     s->data=2;
-    s->next=NULL;
-    s->prior=NULL;
+    //s->next=NULL;
+    //s->prior=NULL;
     t->data=3;
-    t->next=NULL;
-    t->prior=NULL;
+    //t->next=NULL;
+    //t->prior=NULL;
     InitDLinkList(DL);
 
     InsertNextDNode(DL,s);
     InsertNextDNode(s,t);
+    //PrintDLinkList(DL);
 
-    printf("%d\n",DL->next->data);
-    printf("%d",t->prior->data);
+    //DeleteNextDNode(s);
+    NextRead(DL);
+
 }
