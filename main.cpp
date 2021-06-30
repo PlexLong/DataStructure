@@ -4,6 +4,7 @@
 #include "HeadFolder/LNode.h"
 #include "HeadFolder/LinkList_Tail_Insert.h"
 #include "HeadFolder/LinkList_Head_Insert.h"
+#include "HeadFolder/DNode.h"
 int main(){
     /*SqList L;
     InitList(L);
@@ -68,6 +69,23 @@ int main(){
     //´òÓ¡Á´±í
     PrintLinkList(L2);*/
 
+    DLinkList DL;
+    DNode dNode;
+    DNode *s=&dNode;
+    DNode *t=(DNode *) malloc(sizeof(DNode));
+    printf("%d \n",s);
+    printf("%d \n",t);
+    s->data=2;
+    s->next=NULL;
+    s->prior=NULL;
+    t->data=3;
+    t->next=NULL;
+    t->prior=NULL;
+    InitDLinkList(DL);
 
+    InsertNextDNode(DL,s);
+    InsertNextDNode(s,t);
 
+    printf("%d\n",DL->next->data);
+    printf("%d",t->prior->data);
 }
