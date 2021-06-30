@@ -3,6 +3,7 @@
 #include "HeadFolder/SeqList.h"
 #include "HeadFolder/LNode.h"
 #include "HeadFolder/LinkList_Tail_Insert.h"
+#include "HeadFolder/LinkList_Head_Insert.h"
 int main(){
     /*SqList L;
     InitList(L);
@@ -29,7 +30,10 @@ int main(){
     free(seqList.data);*/
 
     /*LinkList L;
-    *//*InitList(L);*//*
+    */
+    /*InitList(L);
+     * */
+    /*
     ListInsert(L,1,1);
     ListInsert(L,2,3);
     LNode *q =L->next->next;//q指针 ->第2个结点
@@ -53,8 +57,17 @@ int main(){
     printf("===========\n");
     free(q);*/
 
-    LinkList L;
-    List_TailInsert(L);
+    /*LinkList L1;
+    //尾插法
+    List_TailInsert(L1);
     //打印链表
-    PrintLinkList(L);
+    PrintLinkList(L1);
+    LinkList L2;
+    //头插法（逆序）
+    List_HeadInsert(L2);
+    //打印链表
+    PrintLinkList(L2);*/
+
+
+
 }
