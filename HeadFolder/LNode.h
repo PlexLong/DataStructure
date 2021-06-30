@@ -6,19 +6,21 @@ typedef struct LNode {
     struct LNode *next;
 } LNode, *LinkList;
 
-//å¸¦å¤´ç»“ç‚¹
+//´øÍ·½áµã
 bool InitList(LinkList &L) {
     L = (LNode *) malloc(sizeof(LNode));
     if (L == NULL) return false;
     L->next = NULL;
     return true;
 }
-//åˆ¤ç©º
+
+//ÅĞ¿Õ
 bool IsEmpty(LinkList L) {
     if (L->next == NULL) return true;
     else return false;
 }
-//æ·»åŠ å…ƒç´ 
+
+//Ìí¼ÓÔªËØ
 bool ListInsert(LinkList &L, int i, int e) {
     if (i < 1) return false;
     LNode *p;
@@ -37,37 +39,37 @@ bool ListInsert(LinkList &L, int i, int e) {
 }
 
 //-------------------------------
-// æŒ‡å®šç»“ç‚¹åæ’æ“ä½œ
+// Ö¸¶¨½áµãºó²å²Ù×÷
 //-------------------------------
 /**
  *
- * @param p ç»“ç‚¹
- * @param e æ’å…¥å…ƒç´ 
+ * @param p ½áµã
+ * @param e ²åÈëÔªËØ
  * @return
- *         true æˆåŠŸ
- *         false å¤±è´¥
+ *         true ³É¹¦
+ *         false Ê§°Ü
  */
 bool InsertNextNode(LNode *p, int e) {
     if (p == NULL) return false;
     LNode *s = (LNode *) malloc(sizeof(LNode));
-    if (s == NULL) return false;//å†…å­˜å·²æ»¡
-    //ä¸‹é¢æ“ä½œä¸å¯æ”¹å˜
+    if (s == NULL) return false;//ÄÚ´æÒÑÂú
+    //ÏÂÃæ²Ù×÷²»¿É¸Ä±ä
     s->data = e;   //s:data=e s:next=NULL
     s->next = p->next;  //s:data=e s:next=p->next
-    p->next = s;   //p->nextæ”¹ä¸ºs
+    p->next = s;   //p->next¸ÄÎªs
     return true;
 }
 
 //---------------------------------------
-//æŒ‡å®šç»“ç‚¹å‰æ’æ“ä½œ
+//Ö¸¶¨½áµãÇ°²å²Ù×÷
 //---------------------------------------
 /**
  *
- * @param p ç»“ç‚¹
- * @param e æ’å…¥å…ƒç´ 
+ * @param p ½áµã
+ * @param e ²åÈëÔªËØ
  * @return
- *         true æˆåŠŸ
- *         false å¤±è´¥
+ *         true ³É¹¦
+ *         false Ê§°Ü
  */
 bool InsertPriorNode(LNode *p, int e) {
     if (p == NULL) return false;
@@ -75,22 +77,22 @@ bool InsertPriorNode(LNode *p, int e) {
     if (s == NULL) return false;
     s->next = p->next;
     p->next = s;
-    s->data = p->data;//äº¤æ¢æ•°æ®
+    s->data = p->data;//½»»»Êı¾İ
     p->data = e;
     return true;
 }
 
 //----------------------------------------------
-// æŒ‰ä½åˆ é™¤
+// °´Î»É¾³ı
 //----------------------------------------------
 /**
  *
- * @param L å•é“¾è¡¨
- * @param i åˆ é™¤ç»“ç‚¹ä½ç½®
- * @param e åˆ é™¤çš„å…ƒç´ 
+ * @param L µ¥Á´±í
+ * @param i É¾³ı½áµãÎ»ÖÃ
+ * @param e É¾³ıµÄÔªËØ
  * @return
- *         true æˆåŠŸ
- *         false å¤±è´¥
+ *         true ³É¹¦
+ *         false Ê§°Ü
  */
 bool ListDelete(LinkList &L, int i, int &e) {
     if (i < 1) return false;
@@ -100,12 +102,98 @@ bool ListDelete(LinkList &L, int i, int &e) {
     while (p != NULL && j < i - 1) {
         p = p->next;
         j++;
-    }//æ‰¾åˆ°ç¬¬i-1ä¸ªä½ç½®
-    if (p == NULL) return false;//iä¸åˆæ³•
-    if (p->next == NULL) return false;//i-1ç»“ç‚¹åå·²ç»æ²¡æœ‰å…¶ä»–ç»“ç‚¹äº†
+    }//ÕÒµ½µÚi-1¸öÎ»ÖÃ
+    if (p == NULL) return false;//i²»ºÏ·¨
+    if (p->next == NULL) return false;//i-1½áµãºóÒÑ¾­Ã»ÓĞÆäËû½áµãÁË
     LNode *q = p->next;
     e = q->data;
-    p->next = q->next;//æ–­å¼€qç»“ç‚¹
+    p->next = q->next;//¶Ï¿ªq½áµã
     free(q);
     return true;
+}
+
+//-------------------------
+// Ö¸¶¨½áµãÉ¾³ı
+//-------------------------
+/**
+ *
+ * @param p ½áµã
+ * @return true ³É¹¦  false Ê§°Ü
+ */
+bool DeleteNode(LNode *p) {
+    if (p == NULL) return false;
+    //if( p->next == NULL) return false;
+    LNode *q = p->next;
+    p->data = p->next->data;
+    p->next = q->next;
+    free(q);
+    return true;
+}
+
+//-----------------
+//°´Î»²éÕÒ
+//-----------------
+/**
+ *
+ * @param L µ¥Á´±í
+ * @param i ²éÕÒÎ»ÖÃ
+ * @return ½áµã
+ */
+LNode *GetElem(LinkList L, int i) {
+    if (i < 0) return NULL; //iÖµ²»ºÏ·¨
+    LNode *p;
+    int j = 0;
+    p = L;
+    while (p != NULL && j < i) {//ÕÒµ½µÚi-1½áµãÎ»ÖÃ
+        p = p->next;
+        j++;
+    }//pÖ¸ÏòµÚi¸ö½áµã
+    return p;
+}
+
+//-------------
+//°´Öµ²éÕÒ
+//--------------
+/**
+ *
+ * @param L µ¥Á´±í
+ * @param e Öµ
+ * @return -1 ²éÕÒÊ§°Ü
+ *          i!=0 && -1 ²éÕÒ³É¹¦ ·µ»ØÏÂ±ê
+ */
+int LocateElem(LinkList L, int e) {
+    LNode *p = L->next;
+    int i = 1;
+    while (p != NULL && p->data != e) {
+        p = p->next;
+        i++;
+    }
+    if (p == NULL) return -1;
+    return i;
+}
+
+//--------------
+//±í³¤
+//--------------
+int Length(LinkList L) {
+    int len = 0;
+    LNode *p = L;
+    while (p->next != NULL) {
+        p = p->next;
+        len++;
+    }
+    return len;
+}
+
+void PrintLinkList(LinkList L){
+    LNode *q=L->next;
+    printf("==[ L ]===\n");
+    int i=1;
+    while (q != NULL){
+        printf("µÚ%d¸ö½áµã: %d   \n",i,q->data);
+        q=q->next;
+        i++;
+    }
+    printf("===========\n");
+    free(q);
 }
