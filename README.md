@@ -1,4 +1,5 @@
 # DataStructure
+  IDE: CLion (Mingw)
 王道书上的顺序 
 每个章节都对应.h文件（C /C++ 混着写的）
 编译环境是 C/C++14
