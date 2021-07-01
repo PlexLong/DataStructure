@@ -5,7 +5,9 @@
 #include "HeadFolder/LinkList_Tail_Insert.h"
 #include "HeadFolder/LinkList_Head_Insert.h"
 #include "HeadFolder/DNode.h"
-int main(){
+#include "HeadFolder/StaticLinkList.h"
+
+int main() {
     /*SqList L;
     InitList(L);
     ListInsert_Stronger(L,1,2);
@@ -21,7 +23,7 @@ int main(){
     for (int i = 0; i < L.length; i++) {
         printf("L.data[%d] : %d \n",i,L.data[i]);
     }*/
-    
+
     /*SeqList seqList;
     InitList(seqList);
     bool q = SeqInsert(seqList,1,5);
@@ -69,11 +71,11 @@ int main(){
     //打印链表
     PrintLinkList(L2);*/
 
-    DLinkList DL;
-    /*
+    /*DLinkList DL;
+    *//*
      * 创建结点方法
      * 1.结构体变量的地址赋给指针
-     * 2.直接malloc（注意释放指针空间）*/
+     * 2.直接malloc（注意释放指针空间）*//*
     DNode dNode;
     DNode *s=&dNode;
     DNode *t=(DNode *) malloc(sizeof(DNode));
@@ -91,7 +93,12 @@ int main(){
     InsertNextDNode(s,t);
     //PrintDLinkList(DL);
 
-    //DeleteNextDNode(s);
-    NextRead(DL);
+    DeleteNextDNode(s);
+    DeleteNextDNode(DL);
+    NextRead(DL);*/
 
+    SNode *s = InitSLL();
+    AddNodeSLL(s, 101,1);
+    AddNodeSLL(s, 222,5);
+    through_1(s);
 }

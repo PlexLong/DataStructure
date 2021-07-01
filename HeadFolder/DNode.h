@@ -3,7 +3,7 @@
 
 typedef struct DNode {
     int data;//数据域
-    struct DNode *prior, *next;//前去、后继指针
+    struct DNode *prior, *next;//前驱、后继指针
 } DNode, *DLinkList;
 
 //打印双向链表
@@ -74,9 +74,14 @@ bool DeleteNextDNode(DNode *p){
 
 //双向链表遍历
 /* 后向遍历 */
+/**
+ *
+ * @param DL 双链表
+ * @return
+ */
 bool NextRead(DLinkList DL){
     DNode *q = DL->next;
-    if(q == nullptr)
+    if(q == NULL)
         printf("空表\n");
     int i=1;
     while (q != nullptr){
@@ -88,4 +93,34 @@ bool NextRead(DLinkList DL){
     return true;
 }
 
-
+//前向遍历
+bool BeforeRead(DLinkList DL){
+    DNode *q = DL->next;
+    if(q == nullptr)
+        printf("空表\n");
+    int i=1;
+    while (q->next!=NULL){
+        q=q->next;
+        i++;
+    }
+    while(q->prior!=NULL){
+        printf("第%d个结点： %d\n",i,q->data);
+        q=q->prior;
+        i--;
+    }
+    free(q);
+    return true;
+}
+//循环双链表
+bool InitDCyclicDLinklist(DLinkList DL){
+    DL = (DNode *) malloc(sizeof(DNode));
+    if(DL == NULL) return false;
+    DL->next=DL;
+    DL->prior=DL;
+    return true;
+}
+//判空
+bool IsEmptyCDL(DLinkList DL){
+    if(DL->next == DL) return true;
+    else return false;
+}

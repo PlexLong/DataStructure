@@ -185,6 +185,28 @@ int Length(LinkList L) {
     return len;
 }
 
+//Ñ­»·µ¥Á´±í
+bool InitCyclicLinklist(LinkList &L){
+    L = (LNode *) malloc(sizeof(LNode));
+    if(L == NULL) return false;
+    L->next=L;
+    return true;
+}
+//ÅÐ¿Õ
+bool IsEmptyCLl(LinkList L){
+    if(L->next == L) return true;
+    else return false;
+}
+//ÅÐÎ²
+LNode *IsEnd(LinkList L){
+    LNode *p=L;
+    while(L->next!=L){
+        p=p->next;
+    }
+    return p;
+}
+
+
 void PrintLinkList(LinkList L){
     LNode *q=L->next;
     printf("==[ L ]===\n");
