@@ -1,11 +1,12 @@
 #include <cstdio>
-#include "HeadFolder/SqList.h"
-#include "HeadFolder/SeqList.h"
-#include "HeadFolder/LNode.h"
-#include "HeadFolder/LinkList_Tail_Insert.h"
-#include "HeadFolder/LinkList_Head_Insert.h"
-#include "HeadFolder/DNode.h"
-#include "HeadFolder/StaticLinkList.h"
+//#include "HeadFolder/SqList.h"
+//#include "HeadFolder/SeqList.h"
+//#include "HeadFolder/LNode.h"
+//#include "HeadFolder/LinkList_Tail_Insert.h"
+//#include "HeadFolder/LinkList_Head_Insert.h"
+//#include "HeadFolder/DNode.h"
+//#include "HeadFolder/StaticLinkList.h"
+#include "HeadFolder/stack.h"
 
 int main() {
     /*SqList L;
@@ -97,8 +98,32 @@ int main() {
     DeleteNextDNode(DL);
     NextRead(DL);*/
 
-    SNode *s = InitSLL();
+  /*  SNode *s = InitSLL();
     AddNodeSLL(s, 101,1);
-    AddNodeSLL(s, 222,5);
-    through_1(s);
+    AddNodeSLL(s,102,2);
+    AddNodeSLL(s,103,3);
+    AddNodeSLL(s,123,4);
+    AddNodeSLL(s, 222,5);*/
+//    through_1(s);
+
+    /*int x;
+    DeleteSSL(s,x,4);
+    printf("被删除的数据为：%d \n",x);
+    through_1(s);*/
+
+/*------------------栈----------------*/
+    SqStack s;
+    InitStack(s);
+    StackEmpty(s);
+    push(s,1);
+    push(s,2);
+    push(s,3);
+    int x;
+    pop(s,x);
+    printf("%d\n",x);
+    for (int i=0;i<=s.top;i++) {
+        printf("s[%d]:%d\n",i,s.data[i]);
+    }
+
+
 }
