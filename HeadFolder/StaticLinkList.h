@@ -46,3 +46,16 @@ bool DeleteSSL(SNode *s,int &x,int addr){
     head[addr].next=-2;
     return true;
 }
+
+bool DeleteSSL(SNode *s,int &x,int addr){
+    SNode *head=s;
+    while (s->next != addr){
+        s=head+s->next;//找到addr前一个位置
+    }
+    int addrnext=head[addr].next;
+    s->next=addrnext;
+    x=head[addr].data;
+    head[addr].data=0;
+    head[addr].next=-2;
+    return true;
+}
