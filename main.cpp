@@ -6,7 +6,8 @@
 //#include "HeadFolder/LinkList_Head_Insert.h"
 //#include "HeadFolder/DNode.h"
 //#include "HeadFolder/StaticLinkList.h"
-#include "HeadFolder/stack.h"
+//#include "HeadFolder/stack.h"
+#include "HeadFolder/LinkStack.h"
 
 int main() {
     /*SqList L;
@@ -112,7 +113,7 @@ int main() {
     through_1(s);*/
 
 /*------------------Õ»----------------*/
-    SqStack s;
+    /*SqStack s;
     InitStack(s);
     StackEmpty(s);
     push(s,1);
@@ -123,7 +124,26 @@ int main() {
     printf("%d\n",x);
     for (int i=0;i<=s.top;i++) {
         printf("s[%d]:%d\n",i,s.data[i]);
-    }
+    }*/
+
+    LinkStack LS;
+    InitLinkStack(LS);
+    LinkStackPush(LS,1);
+    LinkStackPush(LS,20);
+    LinkStackPush(LS,33);
+
+    int x;
+    LinkStackPop(LS,x);
+//    LinkStackPop(LS,x);
+    PrintLS(LS);
+    int topElem;
+    LinkStackGetTop(LS,topElem);
+    printf("Õ»¶¥ÔªËØÎª:%d \n",topElem);
+    if(LinkStackEmpty(LS))
+        printf("EMPTY!");
+    else
+        printf("NOT EMPTY!");
+
 
 
 }
